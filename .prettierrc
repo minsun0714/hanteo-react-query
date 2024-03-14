@@ -1,0 +1,17 @@
+{
+	"useTabs": true,
+	"singleQuote": true,
+	"printWidth": 80,
+	"plugins": [
+		"@trivago/prettier-plugin-sort-imports",
+		"prettier-plugin-tailwindcss"
+	],
+	"importOrder": [
+		"^next",
+		"^react",
+		"^@.*components",
+		"^@",
+		"^@.*css",
+		"\\.(png|jpe?g|gif|svg|webp)$"
+	]
+}

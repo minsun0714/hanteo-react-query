@@ -1,5 +1,5 @@
 const MyInfoPage = () => {
-	return <div></div>;
+	return <div>회원 정보 페이지</div>;
 };
 
 export default MyInfoPage;

@@ -58,7 +58,7 @@ const SignUpPage = () => {
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 	return (
 		<>
-			<div>
+			<div className="img-upload-wrapper">
 				<div>
 					<img src={imageUrl ? imageUrl : DefaultImg} alt="preview" />
 				</div>

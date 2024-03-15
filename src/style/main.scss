@@ -1,7 +1,6 @@
-$header-color: #82cbf4;
-$button-primary-color: #0366d6;
-$button-hover-color: #005cc5;
-$input-color: #57abff;
+$primary-color: black;
+$button-hover-color: rgba(48, 43, 43, 0.937);
+$input-color: white;
 $primary-text-color: white;
 $warning-text-color: red;
 
@@ -16,21 +15,32 @@ $button-primary-height: 55px;
 	height: $height;
 }
 
-@mixin text-style {
+@mixin button-text-style {
 	color: $primary-text-color;
 	font-size: 20px;
 	font-weight: 600;
 	text-align: center;
 }
 
+@mixin input-text-style {
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+}
+
+body {
+	margin: 0;
+}
+
 header {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	padding: 2px 5px;
-	background-color: $header-color;
+	padding: 12px 5px;
+	background-color: $primary-color;
+	color: $primary-text-color;
 	font-weight: 600;
-	font-size: x-large;
+	font-size: large;
 }
 
 main {
@@ -39,9 +49,9 @@ main {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	margin: auto 0;
 	box-sizing: border-box;
-	background-color: #bfe8ff;
+	background-color: white;
+	color: $primary-text-color;
 	min-height: 100vh;
 }
 
@@ -53,10 +63,10 @@ img {
 }
 
 button {
-	@include text-style;
+	@include button-text-style;
 	@include button-size($button-primary-width, $button-primary-height);
 
-	background-color: $button-primary-color;
+	background-color: $primary-color;
 	margin: 10px 5px;
 	border-radius: 5px;
 	border: 1px solid #e1e4e8;
@@ -70,29 +80,45 @@ button {
 		background-color: $button-hover-color;
 	}
 	&:active {
-		background-color: $button-primary-color;
+		background-color: $primary-color;
 	}
+}
+
+.img-upload-wrapper {
+	margin: 30px 0;
 }
 
 .input-wrapper {
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	height: 70px;
 	padding: 0;
 	color: $warning-text-color;
 }
 
 input {
-	@include text-style;
+	@include input-text-style;
 
 	background-color: $input-color;
+	border: 2px solid $primary-color;
 	width: $primary-width;
 	height: $primary-height;
-	margin: 12px 0;
+	margin: 2px;
 	border-radius: 5px;
-	border: none;
 }
 
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #fff inset;
+	-webkit-text-fill-color: #000;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input::placeholder {
-	color: white;
+	color: gray;
+	font-weight: 300;
+}
+input:focus {
+	outline: none;
 }

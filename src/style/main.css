@@ -1,11 +1,16 @@
+body {
+  margin: 0;
+}
+
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 2px 5px;
-  background-color: #82cbf4;
+  padding: 12px 5px;
+  background-color: black;
+  color: white;
   font-weight: 600;
-  font-size: x-large;
+  font-size: large;
 }
 
 main {
@@ -14,9 +19,9 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: auto 0;
   box-sizing: border-box;
-  background-color: #bfe8ff;
+  background-color: white;
+  color: white;
   min-height: 100vh;
 }
 
@@ -35,7 +40,7 @@ button {
   text-align: center;
   width: 35vw;
   height: 55px;
-  background-color: #0366d6;
+  background-color: black;
   margin: 10px 5px;
   border-radius: 5px;
   border: 1px solid #e1e4e8;
@@ -46,37 +51,50 @@ button.img-upload {
   height: 40px;
 }
 button:hover {
-  background-color: #005cc5;
+  background-color: rgba(48, 43, 43, 0.937);
 }
 button:active {
-  background-color: #0366d6;
+  background-color: black;
+}
+
+.img-upload-wrapper {
+  margin: 30px 0;
 }
 
 .input-wrapper {
   display: flex;
   flex-direction: column;
   align-items: start;
+  height: 70px;
   padding: 0;
   color: red;
 }
 
 input {
-  color: white;
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  background-color: #57abff;
+  background-color: white;
+  border: 2px solid black;
   width: 71vw;
   height: 40px;
-  margin: 12px 0;
+  margin: 2px;
   border-radius: 5px;
-  border: none;
 }
 
-input::-moz-placeholder {
-  color: white;
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset;
+  -webkit-text-fill-color: #000;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input::placeholder {
-  color: white;
+  color: gray;
+  font-weight: 300;
+}
+
+input:focus {
+  outline: none;
 }/*# sourceMappingURL=main.css.map */

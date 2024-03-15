@@ -1,5 +1,3 @@
-import '../style/main.css';
-
 type ButtonProps = {
 	text: string;
 	onClick?: () => void;

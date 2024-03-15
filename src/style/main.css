@@ -11,6 +11,12 @@ button {
   border: 1px solid #e1e4e8;
   cursor: pointer;
 }
+button:hover {
+  background-color: #005cc5;
+}
+button:active {
+  background-color: #0366d6;
+}
 
 input {
   color: white;

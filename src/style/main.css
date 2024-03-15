@@ -10,8 +10,9 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  place-items: center;
+  align-items: center;
   text-align: center;
   margin: auto 0;
   box-sizing: border-box;

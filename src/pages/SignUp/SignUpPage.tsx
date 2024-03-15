@@ -54,7 +54,7 @@ const SignUpPage = () => {
 				<ErrorMessage errors={errors} name="name" />
 			</div>
 			<div>
-				<Button text="로그인" />
+				<Button text="회원가입" />
 			</div>
 		</form>
 	);

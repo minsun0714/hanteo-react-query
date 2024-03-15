@@ -20,6 +20,11 @@ main {
   min-height: 100vh;
 }
 
+img {
+  width: 70vw;
+  height: auto;
+}
+
 button {
   color: white;
   font-size: 20px;

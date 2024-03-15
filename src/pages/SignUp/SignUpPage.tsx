@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -25,10 +26,29 @@ const formSchema = z.object({
 });
 
 const SignUpPage = () => {
+	// const [fileName, setFileName] = useState('');
+	const [imageUrl, setImageUrl] = useState('');
+	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (!event.target.files) return;
+
+		const file = event.target.files[0];
+
+		if (file) {
+			// setFileName(file.name);
+			const image = URL.createObjectURL(file);
+			setImageUrl(image);
+		}
+	};
+
+	const onButtonClick = () => {
+		if (!fileInputRef.current) return;
+		fileInputRef.current.click();
+	};
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(formSchema),
@@ -36,27 +56,39 @@ const SignUpPage = () => {
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="input-wrapper">
-				<Input {...register('id')} placeholder="ID를 입력해주세요" />
-				<ErrorMessage errors={errors} name="id" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('pw')} placeholder="PW를 입력해주세요" />
-				<ErrorMessage errors={errors} name="pw" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('pwConfirm')} placeholder="PW 확인" />
-				<ErrorMessage errors={errors} name="pwConfirm" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('name')} placeholder="이름을 입력해주세요" />
-				<ErrorMessage errors={errors} name="name" />
-			</div>
+		<>
 			<div>
-				<Button text="회원가입" />
+				{imageUrl && <img src={imageUrl} alt="preview" />}
+				<input
+					type="file"
+					ref={fileInputRef}
+					onChange={onChangeImage}
+					style={{ display: 'none' }} // 파일 입력 필드 숨기기
+				/>
+				<Button text="이미지 업로드" onClick={onButtonClick} imgUpload />
 			</div>
-		</form>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="input-wrapper">
+					<Input {...register('id')} placeholder="ID를 입력해주세요" />
+					<ErrorMessage errors={errors} name="id" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('pw')} placeholder="PW를 입력해주세요" />
+					<ErrorMessage errors={errors} name="pw" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('pwConfirm')} placeholder="PW 확인" />
+					<ErrorMessage errors={errors} name="pwConfirm" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('name')} placeholder="이름을 입력해주세요" />
+					<ErrorMessage errors={errors} name="name" />
+				</div>
+				<div>
+					<Button text="회원가입" />
+				</div>
+			</form>
+		</>
 	);
 };
 

@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { hasConsecutiveNums } from '../../util/utilFunctions';
 import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,10 +25,25 @@ const LoginPage = () => {
 	const {
 		register,
 		handleSubmit,
+		setError,
+		clearErrors,
+		watch,
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(formSchema),
 	});
+
+	useEffect(() => {
+		const pw = watch('pw');
+		if (hasConsecutiveNums(pw)) {
+			setError('pw', {
+				type: 'custom',
+				message: '비밀번호에 연속된 숫자를 3자 이상 사용할 수 없습니다.',
+			});
+		} else {
+			clearErrors('pw');
+		}
+	}, [watch('pw')]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 

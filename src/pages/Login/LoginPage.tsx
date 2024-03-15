@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const schema = z.object({
+const formSchema = z.object({
 	id: z.string().email({ message: '이메일 형식으로 입력해주세요' }),
 	pw: z
 		.string()
@@ -21,7 +21,7 @@ const LoginPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		resolver: zodResolver(schema),
+		resolver: zodResolver(formSchema),
 	});
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);

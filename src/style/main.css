@@ -3,13 +3,17 @@ button {
   font-size: 20px;
   font-weight: 800;
   text-align: center;
-  background-color: #0366d6;
   width: 35vw;
   height: 55px;
+  background-color: #0366d6;
   margin: 10px 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #e1e4e8;
   cursor: pointer;
+}
+button.img-upload {
+  width: 71vw;
+  height: 40px;
 }
 button:hover {
   background-color: #005cc5;

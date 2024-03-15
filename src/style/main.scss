@@ -1,7 +1,18 @@
-$button-color: #0366d6;
+$button-primary-color: #0366d6;
 $button-hover-color: #005cc5;
 $input-color: #57abff;
 $text-color: white;
+
+$primary-width: 71vw;
+$primary-height: 40px;
+
+$button-primary-width: 35vw;
+$button-primary-height: 55px;
+
+@mixin button-size($width, $height) {
+	width: $width;
+	height: $height;
+}
 
 @mixin text-style {
 	color: $text-color;
@@ -12,20 +23,23 @@ $text-color: white;
 
 button {
 	@include text-style;
+	@include button-size($button-primary-width, $button-primary-height);
 
-	background-color: $button-color;
-	width: 35vw;
-	height: 55px;
+	background-color: $button-primary-color;
 	margin: 10px 5px;
-	border-radius: 10px;
+	border-radius: 5px;
 	border: 1px solid #e1e4e8;
 	cursor: pointer;
+
+	&.img-upload {
+		@include button-size($primary-width, $primary-height);
+	}
 
 	&:hover {
 		background-color: $button-hover-color;
 	}
 	&:active {
-		background-color: $button-color;
+		background-color: $button-primary-color;
 	}
 }
 
@@ -33,8 +47,8 @@ input {
 	@include text-style;
 
 	background-color: $input-color;
-	width: 71vw;
-	height: 40px;
+	width: $primary-width;
+	height: $primary-height;
 	margin: 12px;
 	border-radius: 5px;
 	border: none;

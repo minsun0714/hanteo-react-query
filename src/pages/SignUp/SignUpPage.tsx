@@ -1,4 +1,5 @@
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useRef, useState } from 'react';
+import { FieldValues, SubmitHandler, set, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import * as z from 'zod';
@@ -25,38 +26,56 @@ const formSchema = z.object({
 });
 
 const SignUpPage = () => {
+	const [uploadedImage, setUploadedImage] = useState('');
+
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(formSchema),
 	});
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+
+	const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files === null) return;
+
+		const file = e.target.files[0];
+		const imageUrl = URL.createObjectURL(file);
+		setUploadedImage(imageUrl);
+	};
+
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="input-wrapper">
-				<Input {...register('id')} placeholder="ID를 입력해주세요" />
-				<ErrorMessage errors={errors} name="id" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('pw')} placeholder="PW를 입력해주세요" />
-				<ErrorMessage errors={errors} name="pw" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('pwConfirm')} placeholder="PW 확인" />
-				<ErrorMessage errors={errors} name="pwConfirm" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('name')} placeholder="이름을 입력해주세요" />
-				<ErrorMessage errors={errors} name="name" />
-			</div>
+		<>
 			<div>
-				<Button text="회원가입" />
+				{uploadedImage && (
+					<img src={uploadedImage} height={200} alt="업로드 이미지" />
+				)}
+				<input type="file" onChange={onChangeImage} />
 			</div>
-		</form>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="input-wrapper">
+					<Input {...register('id')} placeholder="ID를 입력해주세요" />
+					<ErrorMessage errors={errors} name="id" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('pw')} placeholder="PW를 입력해주세요" />
+					<ErrorMessage errors={errors} name="pw" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('pwConfirm')} placeholder="PW 확인" />
+					<ErrorMessage errors={errors} name="pwConfirm" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('name')} placeholder="이름을 입력해주세요" />
+					<ErrorMessage errors={errors} name="name" />
+				</div>
+				<div>
+					<Button text="회원가입" />
+				</div>
+			</form>
+		</>
 	);
 };
 

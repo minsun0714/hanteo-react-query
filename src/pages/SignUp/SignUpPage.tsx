@@ -5,6 +5,7 @@ import Input from '../../components/Input';
 import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
+import DefaultImg from '../../assets/default.svg';
 
 const formSchema = z.object({
 	id: z
@@ -58,12 +59,14 @@ const SignUpPage = () => {
 	return (
 		<>
 			<div>
-				{imageUrl && <img src={imageUrl} alt="preview" />}
+				<div>
+					<img src={imageUrl ? imageUrl : DefaultImg} alt="preview" />
+				</div>
 				<input
 					type="file"
 					ref={fileInputRef}
 					onChange={onChangeImage}
-					style={{ display: 'none' }} // 파일 입력 필드 숨기기
+					style={{ display: 'none' }}
 				/>
 				<Button text="이미지 업로드" onClick={onButtonClick} imgUpload />
 			</div>

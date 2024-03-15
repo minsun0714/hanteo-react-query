@@ -55,4 +55,12 @@ input {
   margin: 12px;
   border-radius: 5px;
   border: none;
+}
+
+input::-moz-placeholder {
+  color: white;
+}
+
+input::placeholder {
+  color: white;
 }/*# sourceMappingURL=main.css.map */

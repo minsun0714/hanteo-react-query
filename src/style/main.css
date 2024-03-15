@@ -10,8 +10,9 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  place-items: center;
+  align-items: center;
   text-align: center;
   margin: auto 0;
   box-sizing: border-box;
@@ -22,7 +23,7 @@ main {
 button {
   color: white;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 600;
   text-align: center;
   width: 35vw;
   height: 55px;
@@ -43,15 +44,31 @@ button:active {
   background-color: #0366d6;
 }
 
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0;
+  color: red;
+}
+
 input {
   color: white;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 600;
   text-align: center;
   background-color: #57abff;
   width: 71vw;
   height: 40px;
-  margin: 12px;
+  margin: 12px 0;
   border-radius: 5px;
   border: none;
+}
+
+input::-moz-placeholder {
+  color: white;
+}
+
+input::placeholder {
+  color: white;
 }/*# sourceMappingURL=main.css.map */

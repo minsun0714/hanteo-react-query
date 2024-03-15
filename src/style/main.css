@@ -1,11 +1,25 @@
 button {
-  width: 35vw;
-  height: 55px;
-  margin: 5px;
-  color: #e1e4e8;
-  background-color: #0366d6;
+  color: white;
   font-size: 20px;
   font-weight: 800;
+  text-align: center;
+  background-color: #0366d6;
+  width: 35vw;
+  height: 55px;
+  margin: 10px 5px;
   border-radius: 10px;
   border: 1px solid #e1e4e8;
+}
+
+input {
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  background-color: #57abff;
+  width: 71vw;
+  height: 40px;
+  margin: 12px;
+  border-radius: 5px;
+  border: none;
 }/*# sourceMappingURL=main.css.map */

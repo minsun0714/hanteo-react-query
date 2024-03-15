@@ -45,6 +45,13 @@ main {
 	min-height: 100vh;
 }
 
+img {
+	width: 70vw;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 20px;
+}
+
 button {
 	@include text-style;
 	@include button-size($button-primary-width, $button-primary-height);

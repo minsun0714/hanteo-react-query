@@ -28,11 +28,11 @@ const LoginPage = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div>
+			<div className="input-wrapper">
 				<Input {...register('id')} placeholder="ID를 입력해주세요" />
 				<ErrorMessage errors={errors} name="id" />
 			</div>
-			<div>
+			<div className="input-wrapper">
 				<Input {...register('pw')} placeholder="PW를 입력해주세요" />
 				<ErrorMessage errors={errors} name="pw" />
 			</div>

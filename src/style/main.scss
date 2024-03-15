@@ -1,3 +1,4 @@
+$header-color: #82cbf4;
 $button-primary-color: #0366d6;
 $button-hover-color: #005cc5;
 $input-color: #57abff;
@@ -19,6 +20,27 @@ $button-primary-height: 55px;
 	font-size: 20px;
 	font-weight: 800;
 	text-align: center;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2px 5px;
+	background-color: $header-color;
+	font-weight: 600;
+	font-size: x-large;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	place-items: center;
+	text-align: center;
+	margin: auto 0;
+	box-sizing: border-box;
+	background-color: #bfe8ff;
+	min-height: 100vh;
 }
 
 button {

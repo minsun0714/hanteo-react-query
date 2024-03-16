@@ -1,4 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import * as z from 'zod';
@@ -55,7 +56,9 @@ const LoginPage = () => {
 				<ErrorMessage errors={errors} name="pw" />
 			</div>
 			<div>
-				<Button text="회원가입" />
+				<Link to="/signup">
+					<Button text="회원가입" />
+				</Link>
 				<Button text="로그인" />
 			</div>
 		</form>

@@ -27,12 +27,10 @@ const formSchema = z
 			.min(1, { message: '이름을 입력해주세요' })
 			.max(5, { message: '이름은 5자 이하로 입력해주세요' }),
 	})
-	.refine(
-		(data) => {
-			return data.pw === data.pwConfirm;
-		},
-		{ message: '비밀번호가 일치하지 않습니다.', path: ['pwConfirm'] },
-	);
+	.refine(({ pw, pwConfirm }) => pw === pwConfirm, {
+		message: '비밀번호가 일치하지 않습니다.',
+		path: ['pwConfirm'],
+	});
 
 const SignUpPage = () => {
 	// const [fileName, setFileName] = useState('');

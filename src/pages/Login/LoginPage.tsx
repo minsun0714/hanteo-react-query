@@ -55,7 +55,7 @@ const LoginPage = () => {
 				<ErrorMessage errors={errors} name="pw" />
 			</div>
 			<div>
-				<Button text="로그인" />
+				<Button text="회원가입" />
 				<Button text="로그인" />
 			</div>
 		</form>

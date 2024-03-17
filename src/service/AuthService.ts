@@ -28,20 +28,16 @@ export class AuthService {
 	};
 
 	public useSignUpMutation = () => {
-		const { mutate } = useMutation({
+		return useMutation({
 			mutationFn: this.postSignUp,
 			...this.signUpMutationOptions,
 		});
-
-		return mutate;
 	};
 
 	public useUpdateMyInfoMutation = () => {
-		const { mutate } = useMutation({
+		return useMutation({
 			mutationFn: this.updateMyInfo,
 			...this.signUpMutationOptions,
 		});
-
-		return mutate;
 	};
 }

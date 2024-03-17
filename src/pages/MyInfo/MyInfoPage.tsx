@@ -5,18 +5,30 @@ import Input from '../../components/Input';
 import { getCookie } from '../../util/function/getCookie';
 import MyInfoForm from './components/MyInfoForm';
 import { formSchema } from './formSchema';
+import axios from 'axios';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 
 const MyInfoPage = () => {
+	const { data } = useQuery({
+		queryKey: ['myInfo'],
+		queryFn: async () => {
+			const response = await axios.get(
+				'http://localhost:4000/api/auth/my-info',
+			);
+			return response.data;
+		},
+	});
+
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			profileImage: get('profileImage') || '',
-			id: getCookie('id'),
-			name: getCookie('name'),
-			createdAt: getCookie('createdAt'),
-			updatedAt: getCookie('updatedAt') || '-',
+			profileImage: data.profileImage || get('profileImage') || '-',
+			id: data.id || getCookie('id') || '-',
+			name: data.name || getCookie('name') || '-',
+			createdAt: data.createdAt || getCookie('createdAt') || '-',
+			updatedAt: data.updatedAt || getCookie('updatedAt') || '-',
 		},
 	});
 

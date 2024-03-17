@@ -33,6 +33,10 @@ img {
   border-radius: 20px;
 }
 
+p {
+  color: black;
+}
+
 button {
   color: white;
   font-size: 20px;

@@ -3,14 +3,14 @@ import axios, { AxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
 export class AuthService {
-	url = 'http://localhost:4000';
+	URL = 'http://localhost:4000';
 
 	private postSignUp = async (payload: FieldValues) => {
-		return axios.post(`${this.url}/api/auth/sign-up`, payload);
+		return axios.post(`${this.URL}/api/auth/sign-up`, payload);
 	};
 
 	private updateMyInfo = async (payload: FieldValues) => {
-		return axios.patch(`${this.url}/api/auth/my-info`, payload);
+		return axios.patch(`${this.URL}/api/auth/my-info`, payload);
 	};
 
 	private mutationOptions = {

@@ -13,6 +13,7 @@ const SignUpForm = ({ children }: { children: React.ReactNode }) => {
 			}
 			return axios.post('http://localhost:4000/sign-up', data);
 		},
+		retry: 3,
 		onSuccess: () => {
 			alert(document.cookie);
 		},

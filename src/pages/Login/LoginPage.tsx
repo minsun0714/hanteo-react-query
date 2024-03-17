@@ -1,8 +1,14 @@
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import {
+	FieldValues,
+	FormProvider,
+	SubmitHandler,
+	useForm,
+} from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { hasConsecutiveNums } from '../../util/function/hasConsecutiveNums';
+import LoginForm from './components/LoginForm';
 import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,35 +39,29 @@ const formSchema = z
 	);
 
 const LoginPage = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({
+	const form = useForm({
 		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		console.log(data);
-	};
+	const { register } = form;
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="input-wrapper">
-				<Input {...register('id')} placeholder="ID를 입력해주세요" />
-				<ErrorMessage errors={errors} name="id" />
-			</div>
-			<div className="input-wrapper">
-				<Input {...register('pw')} placeholder="PW를 입력해주세요" />
-				<ErrorMessage errors={errors} name="pw" />
-			</div>
-			<div>
-				<Link to="/signup">
-					<Button text="회원가입" />
-				</Link>
-				<Button text="로그인" />
-			</div>
-		</form>
+		<FormProvider {...form}>
+			<LoginForm>
+				<div className="input-wrapper">
+					<Input {...register('id')} placeholder="ID를 입력해주세요" />
+				</div>
+				<div className="input-wrapper">
+					<Input {...register('pw')} placeholder="PW를 입력해주세요" />
+				</div>
+				<div>
+					<Link to="/signup">
+						<Button text="회원가입" />
+					</Link>
+					<Button text="로그인" />
+				</div>
+			</LoginForm>
+		</FormProvider>
 	);
 };
 

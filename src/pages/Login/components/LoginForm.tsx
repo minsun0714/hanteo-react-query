@@ -1,6 +1,6 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import getCookie from '../../../util/function/getCookie';
+import { getCookie } from '../../../util/function/getCookie';
 
 type LoginFormProps = {
 	children: React.ReactNode;

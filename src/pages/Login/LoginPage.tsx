@@ -1,9 +1,4 @@
-import {
-	FieldValues,
-	FormProvider,
-	SubmitHandler,
-	useForm,
-} from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -43,16 +38,21 @@ const LoginPage = () => {
 		resolver: zodResolver(formSchema),
 	});
 
-	const { register } = form;
+	const {
+		register,
+		formState: { errors },
+	} = form;
 
 	return (
 		<FormProvider {...form}>
 			<LoginForm>
 				<div className="input-wrapper">
 					<Input {...register('id')} placeholder="ID를 입력해주세요" />
+					<ErrorMessage errors={errors} name="id" />
 				</div>
 				<div className="input-wrapper">
 					<Input {...register('pw')} placeholder="PW를 입력해주세요" />
+					<ErrorMessage errors={errors} name="pw" />
 				</div>
 				<div>
 					<Link to="/signup">

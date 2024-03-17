@@ -2,9 +2,11 @@ import { useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import axios from 'axios';
 import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import DefaultImg from '../../assets/default.svg';
 
 const formSchema = z
@@ -33,8 +35,10 @@ const formSchema = z
 	});
 
 const SignUpPage = () => {
-	// const [fileName, setFileName] = useState('');
-	const [imageUrl, setImageUrl] = useState('');
+	const [image, setImage] = useState<{
+		name: string | undefined;
+		url: string | undefined;
+	}>({ name: undefined, url: undefined });
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,9 +47,8 @@ const SignUpPage = () => {
 		const file = event.target.files[0];
 
 		if (file) {
-			// setFileName(file.name);
-			const image = URL.createObjectURL(file);
-			setImageUrl(image);
+			const imageUrl = URL.createObjectURL(file);
+			setImage({ name: file.name, url: imageUrl });
 		}
 	};
 
@@ -61,12 +64,45 @@ const SignUpPage = () => {
 		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+	const { mutate } = useMutation({
+		mutationFn: (data: FieldValues) => {
+			for (const key in data) {
+				document.cookie = `${key}=${data[key]}; path=/`;
+			}
+			return axios.post('http://localhost:4000/sign-up', data);
+		},
+		onSuccess: () => {
+			alert(document.cookie);
+		},
+		onError: (err) => {
+			alert(document.cookie);
+			alert(err);
+		},
+	});
+
+	const onSubmit: SubmitHandler<FieldValues> = ({ id, pw, name }) => {
+		const today = new Date();
+		const year = today.getFullYear();
+		const month = String(today.getMonth() + 1).padStart(2, '0');
+		const date = String(today.getDate()).padStart(2, '0');
+		const hours = String(today.getHours()).padStart(2, '0');
+		const minutes = String(today.getMinutes()).padStart(2, '0');
+		const seconds = String(today.getSeconds()).padStart(2, '0');
+		const createdAt = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+		const signUpData = {
+			id,
+			pw,
+			name,
+			profileImage: image.name,
+			createdAt,
+		};
+		mutate(signUpData);
+	};
 	return (
 		<>
 			<div className="img-upload-wrapper">
 				<div>
-					<img src={imageUrl ? imageUrl : DefaultImg} alt="preview" />
+					<img src={image.url ? image.url : DefaultImg} alt="preview" />
 				</div>
 				<input
 					type="file"

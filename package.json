@@ -13,6 +13,7 @@
 		"@hookform/error-message": "^2.0.1",
 		"@hookform/resolvers": "^3.3.4",
 		"@tanstack/react-query": "^5.28.4",
+		"axios": "^1.6.8",
 		"eslint-config-prettier": "^9.1.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

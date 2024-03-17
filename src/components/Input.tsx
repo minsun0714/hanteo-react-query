@@ -1,7 +1,8 @@
 import React from 'react';
 
 type InputProps = {
-	placeholder: string;
+	placeholder?: string;
+	readOnly?: boolean;
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {

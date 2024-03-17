@@ -6,18 +6,21 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 		'plugin:react-hooks/recommended',
+		'plugin:@tanstack/eslint-plugin-query/recommended',
 	],
 	ignorePatterns: ['dist', '.eslintrc.cjs'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		project: './tsconfig.json',
 	},
-	plugins: ['react-refresh'],
+	plugins: ['react-refresh', '@tanstack/query'],
 	rules: {
 		'react-refresh/only-export-components': [
 			'warn',
 			{ allowConstantExport: true },
 		],
 		'@typescript-eslint/no-explicit-any': 'warn',
+		'@tanstack/query/exhaustive-deps': 'error',
+		'@tanstack/query/stable-query-client': 'error',
 	},
 };

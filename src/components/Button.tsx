@@ -1,12 +1,17 @@
 type ButtonProps = {
 	text: string;
+	type?: 'button' | 'submit' | 'reset';
 	onClick?: () => void;
 	imgUpload?: boolean;
 };
 
-const Button = ({ text, onClick, imgUpload }: ButtonProps) => {
+const Button = ({ text, type, onClick, imgUpload }: ButtonProps) => {
 	return (
-		<button onClick={onClick} className={imgUpload ? 'img-upload' : ''}>
+		<button
+			type={type}
+			onClick={onClick}
+			className={imgUpload ? 'img-upload' : ''}
+		>
 			{text}
 		</button>
 	);

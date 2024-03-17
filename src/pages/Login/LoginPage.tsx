@@ -1,6 +1,8 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { hasConsecutiveNums } from '../../util/function/hasConsecutiveNums';
 import * as z from 'zod';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,8 +24,7 @@ const formSchema = z
 	})
 	.refine(
 		({ pw }) => {
-			const consecutiveNums = [...Array(10)].map((_, i) => String(i).repeat(3));
-			return !consecutiveNums.some((num) => pw.includes(num));
+			return !hasConsecutiveNums(pw);
 		},
 		{
 			message: '비밀번호에 3자리 이상 연속된 숫자가 있지 않아야 합니다.',
@@ -55,7 +56,9 @@ const LoginPage = () => {
 				<ErrorMessage errors={errors} name="pw" />
 			</div>
 			<div>
-				<Button text="로그인" />
+				<Link to="/signup">
+					<Button text="회원가입" />
+				</Link>
 				<Button text="로그인" />
 			</div>
 		</form>

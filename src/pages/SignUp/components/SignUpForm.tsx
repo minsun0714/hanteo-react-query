@@ -2,7 +2,11 @@ import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
-const SignUpForm = ({ children }: { children: React.ReactNode }) => {
+type SignUpFormProps = {
+	children: React.ReactNode;
+};
+
+const SignUpForm = ({ children }: SignUpFormProps) => {
 	const { handleSubmit, watch } = useFormContext();
 	const { mutate } = useMutation({
 		mutationFn: (data: FieldValues) => {

@@ -6,18 +6,23 @@ type SignUpFormProps = {
 	children: React.ReactNode;
 };
 
+const postSignUp = async (data: FieldValues) => {
+	return axios.post('http://localhost:4000/sign-up', data);
+};
+
 const SignUpForm = ({ children }: SignUpFormProps) => {
 	const { handleSubmit, watch } = useFormContext();
+
 	const { mutate } = useMutation({
-		mutationFn: (data: FieldValues) => {
-			console.log(data);
+		mutationFn: (data: FieldValues) => postSignUp(data),
+		retry: 3,
+		onMutate: (data) => {
+			console.log('📢[SignUpForm.tsx:20]: data: ', data);
 			for (const key in data) {
 				const value = data[key];
 				document.cookie = `${key}=${value}; path=/`;
 			}
-			return axios.post('http://localhost:4000/sign-up', data);
 		},
-		retry: 3,
 		onSuccess: () => {
 			alert(document.cookie);
 		},

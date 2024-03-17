@@ -1,17 +1,10 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import getCookie from '../../../util/function/getCookie';
 
 type LoginFormProps = {
 	children: React.ReactNode;
 };
-
-function getCookie(key: string) {
-	const cookieValue = `; ${document.cookie}`;
-	const cookieArr = cookieValue
-		.split('; ')
-		.map((keyValue: string) => keyValue.split('='));
-	return cookieArr.find(([cookieKey]) => cookieKey === key)?.[1];
-}
 
 const LoginForm = ({ children }: LoginFormProps) => {
 	const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { FieldValues } from 'react-hook-form';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
 export class AuthService {
@@ -11,7 +11,7 @@ export class AuthService {
 		return axios.patch('http://localhost:4000/my-info', payload);
 	};
 
-	private signUpMutationOptions = {
+	private mutationOptions = {
 		retry: 3,
 		onMutate: (payload: FieldValues) => {
 			Object.entries(payload).forEach(([key, value]) => {
@@ -21,23 +21,26 @@ export class AuthService {
 		onSuccess: () => {
 			alert('회원가입이 완료되었습니다.');
 		},
-		onError: (err: any) => {
-			alert(err.message);
-			alert(document.cookie);
+		onError: (err: AxiosError | unknown) => {
+			if (axios.isAxiosError(err)) {
+				alert(err.message);
+				return;
+			}
+			alert('알 수 없는 오류가 발생했습니다. 다시 시도해주세요.');
 		},
 	};
 
 	public useSignUpMutation = () => {
 		return useMutation({
 			mutationFn: this.postSignUp,
-			...this.signUpMutationOptions,
+			...this.mutationOptions,
 		});
 	};
 
 	public useUpdateMyInfoMutation = () => {
 		return useMutation({
 			mutationFn: this.updateMyInfo,
-			...this.signUpMutationOptions,
+			...this.mutationOptions,
 		});
 	};
 }

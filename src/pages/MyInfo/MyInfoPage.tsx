@@ -9,10 +9,10 @@ import { formSchema } from './formSchema';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const authService = new AuthService();
-const { data } = authService.useGetMyInfoQuery();
-
 const MyInfoPage = () => {
+	const authService = new AuthService();
+	const { data } = authService.useGetMyInfoQuery();
+
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {

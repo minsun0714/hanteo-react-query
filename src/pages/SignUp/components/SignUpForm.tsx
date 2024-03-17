@@ -1,5 +1,5 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
-import { formatDate } from '../../../util/utilFunctions';
+import DateFormatter from '../../../util/DateFormatter';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
@@ -37,7 +37,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 		const profileImage = watch('profileImage');
 
 		const today = new Date();
-		const createdAt = formatDate(today);
+		const createdAt = DateFormatter.formatDate(today);
 
 		const payload = {
 			...postData,

@@ -17,18 +17,16 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 		mutationFn: (data: FieldValues) => postSignUp(data),
 		retry: 3,
 		onMutate: (data) => {
-			console.log('📢[SignUpForm.tsx:20]: data: ', data);
 			for (const key in data) {
 				const value = data[key];
 				document.cookie = `${key}=${value}; path=/`;
 			}
 		},
 		onSuccess: () => {
-			alert(document.cookie);
+			alert('회원가입이 완료되었습니다.');
 		},
 		onError: (err) => {
-			alert(document.cookie + err);
-			// alert(err);
+			alert(err.message);
 		},
 	});
 	const onSubmit: SubmitHandler<FieldValues> = ({ id, pw, name }) => {

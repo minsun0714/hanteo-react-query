@@ -34,14 +34,14 @@ export class AuthService {
 
 	public useSignUpMutation = () => {
 		return useMutation({
-			mutationFn: this.postSignUp,
+			mutationFn: (payload: FieldValues) => this.postSignUp(payload),
 			...this.mutationOptions,
 		});
 	};
 
 	public useUpdateMyInfoMutation = () => {
 		return useMutation({
-			mutationFn: this.updateMyInfo,
+			mutationFn: (payload: FieldValues) => this.updateMyInfo(payload),
 			...this.mutationOptions,
 		});
 	};

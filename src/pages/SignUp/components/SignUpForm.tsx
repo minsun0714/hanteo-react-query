@@ -1,4 +1,5 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import ErrorFallback from '../../../components/ErrorFallback';
 import LoadingFallback from '../../../components/LoadingFallback';
 import { AuthService } from '../../../service/AuthService';
@@ -11,8 +12,11 @@ type SignUpFormProps = {
 const SignUpForm = ({ children }: SignUpFormProps) => {
 	const { handleSubmit, watch } = useFormContext();
 
+	const navigate = useNavigate();
+
 	const authService = new AuthService();
-	const { mutate, isPending, isError } = authService.useSignUpMutation();
+	const { mutateAsync, isPending, isError } =
+		authService.usePostSignUpMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const { pwConfirm, ...postData } = formFieldData;
@@ -30,7 +34,12 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 			updatedAt,
 		};
 
-		mutate(payload);
+		mutateAsync(payload)
+			.then(() => {
+				navigate('/');
+				alert('회원가입이 완료되었습니다.');
+			})
+			.catch(console.error);
 	};
 
 	return isPending ? (

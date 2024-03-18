@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { getCookie } from '../util/function/getCookie';
 import Button from './Button';
 import DefaultImgUrl from '../assets/default.svg';
 
-const ImageUpload = () => {
+type ImageUploadProps = {
+	profileImage?: string;
+};
+
+const ImageUpload = ({ profileImage }: ImageUploadProps) => {
 	const [imageUrl, setImageUrl] = useState<string>(DefaultImgUrl);
 	const [imageName, setImageName] = useState<string | undefined>('-');
 
@@ -13,7 +16,6 @@ const ImageUpload = () => {
 	const { setValue, watch } = useFormContext();
 
 	useEffect(() => {
-		const profileImage = getCookie('profileImage');
 		if (profileImage == 'undefined') {
 			setImageName('-');
 		}

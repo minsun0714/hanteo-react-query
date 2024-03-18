@@ -1,5 +1,6 @@
 import { FieldValues } from 'react-hook-form';
 import { queryClient } from '../main';
+import { getCookie } from '../util/function/getCookie';
 import axios, { AxiosError } from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -15,26 +16,31 @@ export class AuthService {
 	URL = 'http://localhost:4000';
 
 	private getMyInfo = async (): Promise<IMyInfo> => {
-		return axios.get(`${this.URL}/api/auth/my-info`);
+		const myInfo = {
+			id: getCookie('id') || '',
+			name: getCookie('name') || '',
+			createdAt: getCookie('createdAt') || '',
+			updatedAt: getCookie('updatedAt') || '',
+			profileImage: getCookie('profileImage') || '',
+		};
+		return myInfo;
 	};
 
 	private postSignUp = async (payload: FieldValues) => {
-		return axios.post(`${this.URL}/api/auth/sign-up`, payload);
+		return Object.entries(payload).forEach(([key, value]) => {
+			document.cookie = `${key}=${value}; path=/`;
+		});
 	};
 
 	private updateMyInfo = async (payload: FieldValues) => {
-		return axios.patch(`${this.URL}/api/auth/my-info`, payload);
+		return Object.entries(payload).forEach(([key, value]) => {
+			document.cookie = `${key}=${value}; path=/`;
+		});
 	};
 
 	private mutationOptions = {
 		retry: 3,
-		onMutate: (payload: FieldValues) => {
-			Object.entries(payload).forEach(([key, value]) => {
-				document.cookie = `${key}=${value}; path=/`;
-			});
-		},
 		onSuccess: () => {
-			alert('회원가입이 완료되었습니다.');
 			queryClient.invalidateQueries({ queryKey: ['myInfo'] });
 		},
 		onError: (err: AxiosError | unknown) => {
@@ -52,7 +58,7 @@ export class AuthService {
 		});
 	};
 
-	public useSignUpMutation = () => {
+	public usePostSignUpMutation = () => {
 		return useMutation({
 			mutationFn: (payload: FieldValues) => this.postSignUp(payload),
 			...this.mutationOptions,

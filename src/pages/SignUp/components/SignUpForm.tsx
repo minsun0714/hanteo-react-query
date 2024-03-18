@@ -20,11 +20,13 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 
 		const today = new Date();
 		const createdAt = DateFormatter.formatDate(today);
+		const updatedAt = DateFormatter.formatDate(today);
 
 		const payload = {
 			...postData,
 			profileImage,
 			createdAt,
+			updatedAt,
 		};
 
 		mutate(payload);

@@ -1,4 +1,5 @@
-import { FormProvider, get, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import ImageUpload from '../../components/ImageUpload';
 import Input from '../../components/Input';
@@ -16,7 +17,7 @@ const MyInfoPage = () => {
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			profileImage: data?.profileImage || get('profileImage') || '-',
+			profileImage: data?.profileImage || getCookie('profileImage') || '-',
 			id: data?.id || getCookie('id') || '-',
 			name: data?.name || getCookie('name') || '-',
 			createdAt: data?.createdAt || getCookie('createdAt') || '-',

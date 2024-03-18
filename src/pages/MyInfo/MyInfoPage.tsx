@@ -12,7 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const MyInfoPage = () => {
 	const authService = new AuthService();
-	const { data } = authService.useGetMyInfoQuery();
+	const { data } = authService.useMyInfoQuery();
 
 	const form = useForm({
 		resolver: zodResolver(formSchema),

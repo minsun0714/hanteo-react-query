@@ -20,8 +20,8 @@ const SignUpPage = () => {
 	return (
 		<>
 			<FormProvider {...form}>
-				<ImageUpload />
 				<SignUpForm>
+					<ImageUpload />
 					<div className="input-wrapper">
 						<Input {...register('id')} placeholder="ID를 입력해주세요" />
 						<ErrorMessage errors={errors} name="id" />

@@ -1,4 +1,5 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
+import LoadingFallback from '../../../components/LoadingFallback';
 import { AuthService } from '../../../service/AuthService';
 import DateFormatter from '../../../util/class/DateFormatter';
 
@@ -10,7 +11,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 	const { handleSubmit, watch } = useFormContext();
 
 	const authService = new AuthService();
-	const { mutate } = authService.useSignUpMutation();
+	const { mutate, isPending } = authService.useSignUpMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const { pwConfirm, ...postData } = formFieldData;
@@ -29,7 +30,11 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 		mutate(payload);
 	};
 
-	return <form onSubmit={handleSubmit(onSubmit)}>{children}</form>;
+	return isPending ? (
+		<LoadingFallback />
+	) : (
+		<form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+	);
 };
 
 export default SignUpForm;

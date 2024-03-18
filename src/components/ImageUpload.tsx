@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { getCookie } from '../util/function/getCookie';
 import Button from './Button';
 import DefaultImg from '../assets/default.svg';
 
@@ -8,7 +9,7 @@ const ImageUpload = () => {
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
-	const { setValue } = useFormContext();
+	const { setValue, watch } = useFormContext();
 
 	const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (!event.target.files) return;
@@ -31,6 +32,7 @@ const ImageUpload = () => {
 			<div>
 				<img src={image} alt="preview" />
 			</div>
+			<p>{watch('profileImage') || getCookie('profileImage')}</p>
 			<input
 				type="file"
 				accept="image/*"

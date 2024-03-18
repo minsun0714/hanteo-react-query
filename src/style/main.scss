@@ -62,6 +62,10 @@ img {
 	border-radius: 20px;
 }
 
+p {
+	color: $primary-color;
+}
+
 button {
 	@include button-text-style;
 	@include button-size($button-primary-width, $button-primary-height);

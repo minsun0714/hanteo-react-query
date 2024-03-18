@@ -33,6 +33,11 @@ img {
   border-radius: 20px;
 }
 
+.loading-spinner {
+  width: 100px;
+  height: 100px;
+}
+
 p {
   color: black;
 }

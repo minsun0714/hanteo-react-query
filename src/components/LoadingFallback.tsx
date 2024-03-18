@@ -1,5 +1,7 @@
+import LoadingSpinner from '../assets/LoadingSpinner.svg';
+
 const LoadingFallback = () => {
-	return <p>로딩중...</p>;
+	return <img src={LoadingSpinner} className="loading-spinner" alt="Loading" />;
 };
 
 export default LoadingFallback;

@@ -15,8 +15,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 	const navigate = useNavigate();
 
 	const authService = new AuthService();
-	const { mutateAsync, isPending, isError } =
-		authService.usePostSignUpMutation();
+	const { mutateAsync, isPending, isError } = authService.useMyInfoMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const { pwConfirm, ...postData } = formFieldData;

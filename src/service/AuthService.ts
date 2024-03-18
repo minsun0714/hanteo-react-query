@@ -41,7 +41,6 @@ export class AuthService {
 	private mutationOptions = {
 		retry: 3,
 		onSuccess: () => {
-			alert('회원가입이 완료되었습니다.');
 			queryClient.invalidateQueries({ queryKey: ['myInfo'] });
 		},
 		onError: (err: AxiosError | unknown) => {

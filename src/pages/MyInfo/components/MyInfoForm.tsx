@@ -11,7 +11,7 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 	const { handleSubmit, watch } = useFormContext();
 
 	const authService = new AuthService();
-	const { mutate, isPending } = authService.useUpdateMyInfoMutation();
+	const { mutateAsync, isPending } = authService.useUpdateMyInfoMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const name = formFieldData.name;
@@ -26,7 +26,11 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 			updatedAt,
 		};
 
-		mutate(payload);
+		mutateAsync(payload)
+			.then(() => {
+				alert('정보가 수정되었습니다.');
+			})
+			.catch(console.error);
 	};
 	return isPending ? (
 		<LoadingFallback isPending />

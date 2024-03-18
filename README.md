@@ -89,14 +89,6 @@ v20.11.0
   - ex.
   ```
   const SignUpForm = ({ children }: SignUpFormProps) => {
-	const { handleSubmit, watch } = useFormContext();
-
-	const authService = new AuthService();
-	const { mutate, isPending, isError } = authService.useSignUpMutation();
-
-	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
-		const { pwConfirm, ...postData } = formFieldData;
-  //...
   ```
 
 - zod를 이용하여 form schema를 관리했는데, 실시간 유효성 검사 조건을 기재하기에 적합했습니다.

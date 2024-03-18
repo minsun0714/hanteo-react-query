@@ -85,6 +85,9 @@ input {
   margin: 2px;
   border-radius: 5px;
 }
+input.read-only {
+  background-color: rgb(180, 180, 180);
+}
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #fff inset;

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import ErrorFallback from '../../../components/ErrorFallback';
 import { getCookie } from '../../../util/function/getCookie';
 
 type LoginFormProps = {

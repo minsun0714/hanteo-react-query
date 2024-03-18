@@ -1,16 +1,8 @@
-import { useEffect, useMemo } from 'react';
-import { Outlet, useMatches } from 'react-router-dom';
-import { PATH_NAME } from './util/constants/path';
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './components/Header';
 
 const Layout = () => {
-	const matches = useMatches();
-	const pageTitle = useMemo(() => {
-		const match = matches[matches.length - 1]?.pathname as
-			| keyof typeof PATH_NAME
-			| undefined;
-		return match ? PATH_NAME[match] : '페이지를 찾을 수 없습니다.';
-	}, [matches]);
-
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth > 770 || window.innerWidth < 320) {
@@ -27,7 +19,7 @@ const Layout = () => {
 
 	return (
 		<>
-			<header>{pageTitle}</header>
+			<Header />
 			<main>
 				<Outlet />
 			</main>

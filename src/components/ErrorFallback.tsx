@@ -4,7 +4,7 @@ const ErrorFallback = () => {
 	const navigate = useNavigate();
 
 	const handleRetry = () => {
-		navigate('/');
+		navigate(0);
 	};
 	return (
 		<>

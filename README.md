@@ -59,6 +59,10 @@ v20.11.0
     - hasConsecutiveNums.ts
 - vite-env.d.ts
 
+## data flow
+![스크린샷 2024-03-18 오후 9 30 41](https://github.com/minsun0714/hanteo-react-query/assets/117507731/a7facdab-0613-4542-a8a5-513e89898a5e)
+
+
 ## 기능 구현
 ### [React-Query(v5.28.4)] 네트워크 요청 구현 방식
 

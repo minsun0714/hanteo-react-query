@@ -6,7 +6,7 @@ import './index.css';
 import router from './router.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			// 윈도우 포커스 시 새로고침을 하지 않도록 설정

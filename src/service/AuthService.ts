@@ -13,8 +13,6 @@ interface IMyInfo {
 }
 
 export class AuthService {
-	URL = 'http://localhost:4000';
-
 	private getMyInfo = async (): Promise<IMyInfo> => {
 		const myInfo = {
 			id: getCookie('id') || '',

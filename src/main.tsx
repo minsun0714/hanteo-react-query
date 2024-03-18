@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
+import ErrorFallback from './components/ErrorFallback.tsx';
 import './index.css';
 import router from './router.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -21,9 +23,11 @@ export const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={router} />
-			<App />
-		</QueryClientProvider>
+		<ErrorBoundary FallbackComponent={ErrorFallback}>
+			<QueryClientProvider client={queryClient}>
+				<RouterProvider router={router} />
+				<App />
+			</QueryClientProvider>
+		</ErrorBoundary>
 	</React.StrictMode>,
 );

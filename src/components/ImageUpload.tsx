@@ -1,15 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { getCookie } from '../util/function/getCookie';
 import Button from './Button';
-import DefaultImg from '../assets/default.svg';
+import DefaultImgUrl from '../assets/default.svg';
 
 const ImageUpload = () => {
-	const [image, setImage] = useState<string>(DefaultImg);
+	const [imageUrl, setImageUrl] = useState<string>(DefaultImgUrl);
+	const [imageName, setImageName] = useState<string | undefined>('-');
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const { setValue, watch } = useFormContext();
+
+	useEffect(() => {
+		const profileImage = getCookie('profileImage');
+		if (profileImage !== 'undefined') {
+			setImageName(profileImage);
+		}
+	}, []);
 
 	const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (!event.target.files) return;
@@ -18,7 +26,7 @@ const ImageUpload = () => {
 
 		if (file) {
 			const imageUrl = URL.createObjectURL(file);
-			setImage(imageUrl);
+			setImageUrl(imageUrl);
 			setValue('profileImage', file.name);
 		}
 	};
@@ -30,9 +38,9 @@ const ImageUpload = () => {
 	return (
 		<div className="img-upload-wrapper">
 			<div>
-				<img src={image} alt="preview" />
+				<img src={imageUrl} alt="preview" />
 			</div>
-			<p>{watch('profileImage') || getCookie('profileImage')}</p>
+			<p>{watch('profileImage') || imageName}</p>
 			<input
 				type="file"
 				accept="image/*"

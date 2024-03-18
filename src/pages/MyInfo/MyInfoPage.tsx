@@ -46,7 +46,7 @@ const MyInfoPage = () => {
 		<>
 			<FormProvider {...form}>
 				<MyInfoForm>
-					<ImageUpload />
+					<ImageUpload profileImage={data?.profileImage || '-'} />
 					<div className="input-wrapper">
 						<Input readOnly {...register('id')} />
 					</div>

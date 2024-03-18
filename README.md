@@ -128,3 +128,10 @@ v20.11.0
   ```
   - 별도의 p tag를 렌더링할 때보다 훨씬 편리하고 type 안정성도 강화된 방식이라는 생각이 들었습니다.
 
+
+### error handling
+- 회원가입 3회 이상 실패 시, useMutation이 반환하는 isError이 true일 경우 ErrorFallback을 렌더링하는 방식을 사용했습니다.
+- 미지원 해상도의 경우 Layout.tsx에 해상도 값에 접근하는 로직을 적고, react-error-boundary로 정의한 전역 error boundary를 이용해 error fallback을 렌더링했습니다.
+- 로그인 3회 실패 시, router.tsx의 errorElement에 정의한 errorFallback을 렌더링하는 방식을 사용했습니다.
+
+

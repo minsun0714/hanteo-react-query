@@ -12,7 +12,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 	const { handleSubmit, watch } = useFormContext();
 
 	const authService = new AuthService();
-	const { mutate, isPending, isError } = authService.useSignUpMutation();
+	const { mutate, isPending, isError } = authService.usePostSignUpMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const { pwConfirm, ...postData } = formFieldData;

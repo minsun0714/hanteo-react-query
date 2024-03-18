@@ -52,7 +52,7 @@ export class AuthService {
 		});
 	};
 
-	public useSignUpMutation = () => {
+	public usePostSignUpMutation = () => {
 		return useMutation({
 			mutationFn: (payload: FieldValues) => this.postSignUp(payload),
 			...this.mutationOptions,

@@ -34,7 +34,9 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 			updatedAt,
 		};
 
-		mutateAsync(payload).then(() => navigate('/'));
+		mutateAsync(payload)
+			.then(() => navigate('/'))
+			.catch(console.error);
 	};
 
 	return isPending ? (

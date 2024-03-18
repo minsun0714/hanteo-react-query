@@ -14,8 +14,8 @@ const ImageUpload = () => {
 
 	useEffect(() => {
 		const profileImage = getCookie('profileImage');
-		if (profileImage !== 'undefined') {
-			setImageName(profileImage);
+		if (profileImage == 'undefined') {
+			setImageName('-');
 		}
 	}, []);
 

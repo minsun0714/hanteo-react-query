@@ -16,7 +16,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const { pwConfirm, ...postData } = formFieldData;
 
-		const profileImage = watch('profileImage');
+		const profileImage = watch('profileImage') || '-';
 
 		const today = new Date();
 		const createdAt = DateFormatter.formatDate(today);

@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import ImageUpload from '../../components/ImageUpload';
 import Input from '../../components/Input';
 import { AuthService } from '../../service/AuthService';
-import { getCookie } from '../../util/function/getCookie';
 import LogOutButton from './components/LogOutButton';
 import MyInfoForm from './components/MyInfoForm';
 import { formSchema } from './formSchema';
@@ -17,13 +17,25 @@ const MyInfoPage = () => {
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			profileImage: data?.profileImage || getCookie('profileImage') || '-',
-			id: data?.id || getCookie('id') || '-',
-			name: data?.name || getCookie('name') || '-',
-			createdAt: data?.createdAt || getCookie('createdAt') || '-',
-			updatedAt: data?.updatedAt || getCookie('updatedAt') || '-',
+			profileImage: data?.profileImage || '-',
+			id: data?.id || '-',
+			name: data?.name || '-',
+			createdAt: data?.createdAt || '-',
+			updatedAt: data?.updatedAt || '-',
 		},
 	});
+
+	useEffect(() => {
+		if (data) {
+			form.reset({
+				profileImage: data.profileImage,
+				id: data.id,
+				name: data.name,
+				createdAt: data.createdAt,
+				updatedAt: data.updatedAt,
+			});
+		}
+	}, [data]);
 
 	const {
 		register,

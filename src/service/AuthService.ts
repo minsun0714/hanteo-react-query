@@ -1,5 +1,6 @@
 import { FieldValues } from 'react-hook-form';
 import { queryClient } from '../main';
+import { getCookie } from '../util/function/getCookie';
 import axios, { AxiosError } from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -15,7 +16,14 @@ export class AuthService {
 	URL = 'http://localhost:4000';
 
 	private getMyInfo = async (): Promise<IMyInfo> => {
-		return axios.get(`${this.URL}/api/auth/my-info`);
+		const myInfo = {
+			id: getCookie('id') || '',
+			name: getCookie('name') || '',
+			createdAt: getCookie('createdAt') || '',
+			updatedAt: getCookie('updatedAt') || '',
+			profileImage: getCookie('profileImage') || '',
+		};
+		return myInfo;
 	};
 
 	private postSignUp = async (payload: FieldValues) => {

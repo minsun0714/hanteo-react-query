@@ -27,20 +27,19 @@ export class AuthService {
 	};
 
 	private postSignUp = async (payload: FieldValues) => {
-		return axios.post(`${this.URL}/api/auth/sign-up`, payload);
+		return Object.entries(payload).forEach(([key, value]) => {
+			document.cookie = `${key}=${value}; path=/`;
+		});
 	};
 
 	private updateMyInfo = async (payload: FieldValues) => {
-		return axios.patch(`${this.URL}/api/auth/my-info`, payload);
+		return Object.entries(payload).forEach(([key, value]) => {
+			document.cookie = `${key}=${value}; path=/`;
+		});
 	};
 
 	private mutationOptions = {
 		retry: 3,
-		onMutate: (payload: FieldValues) => {
-			Object.entries(payload).forEach(([key, value]) => {
-				document.cookie = `${key}=${value}; path=/`;
-			});
-		},
 		onSuccess: () => {
 			alert('회원가입이 완료되었습니다.');
 			queryClient.invalidateQueries({ queryKey: ['myInfo'] });

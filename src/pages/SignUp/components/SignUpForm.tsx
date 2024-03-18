@@ -35,7 +35,10 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 		};
 
 		mutateAsync(payload)
-			.then(() => navigate('/'))
+			.then(() => {
+				navigate('/');
+				alert('회원가입이 완료되었습니다.');
+			})
 			.catch(console.error);
 	};
 

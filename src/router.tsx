@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './Layout';
+import ErrorFallback from './components/ErrorFallback';
 import LoginPage from './pages/Login/LoginPage';
 import MyInfoPage from './pages/MyInfo/MyInfoPage';
 import SignUpPage from './pages/SignUp/SignUpPage';
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
 				element: <MyInfoPage />,
 			},
 		],
-		errorElement: <div>404 Not Found</div>,
+		errorElement: <ErrorFallback />,
 	},
 ]);
 

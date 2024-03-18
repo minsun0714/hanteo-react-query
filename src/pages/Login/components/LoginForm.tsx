@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ErrorFallback from '../../../components/ErrorFallback';
@@ -37,11 +38,13 @@ const LoginForm = ({ children }: LoginFormProps) => {
 		navigate('/myinfo');
 	};
 
-	return loginTryCount >= 3 ? (
-		<ErrorFallback />
-	) : (
-		<form onSubmit={handleSubmit(onSubmit)}>{children}</form>
-	);
+	useEffect(() => {
+		if (loginTryCount >= 3) {
+			throw new Error('잘못된 로그인 시도 3회 초과');
+		}
+	}, [loginTryCount]);
+
+	return <form onSubmit={handleSubmit(onSubmit)}>{children}</form>;
 };
 
 export default LoginForm;

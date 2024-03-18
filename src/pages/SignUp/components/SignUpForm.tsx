@@ -31,7 +31,7 @@ const SignUpForm = ({ children }: SignUpFormProps) => {
 	};
 
 	return isPending ? (
-		<LoadingFallback />
+		<LoadingFallback isPending />
 	) : (
 		<form onSubmit={handleSubmit(onSubmit)}>{children}</form>
 	);

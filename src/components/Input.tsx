@@ -8,7 +8,11 @@ type InputProps = {
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	return (
 		<>
-			<input {...props} ref={ref} />
+			<input
+				{...props}
+				ref={ref}
+				className={props.readOnly ? 'read-only' : ''}
+			/>
 		</>
 	);
 });

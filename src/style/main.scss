@@ -1,6 +1,7 @@
 $primary-color: black;
 $button-hover-color: rgba(48, 43, 43, 0.937);
-$input-color: white;
+$primary-input-color: white;
+$read-only-input-color: rgb(180, 180, 180);
 $primary-text-color: white;
 $warning-text-color: red;
 
@@ -104,12 +105,15 @@ button {
 input {
 	@include input-text-style;
 
-	background-color: $input-color;
+	background-color: $primary-input-color;
 	border: 2px solid $primary-color;
 	width: $primary-width;
 	height: $primary-height;
 	margin: 2px;
 	border-radius: 5px;
+	&.read-only {
+		background-color: $read-only-input-color;
+	}
 }
 
 input:-webkit-autofill {

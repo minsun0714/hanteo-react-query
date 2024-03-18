@@ -22,6 +22,7 @@ const router = createBrowserRouter([
 				element: <MyInfoPage />,
 			},
 		],
+		errorElement: <div>404 Not Found</div>,
 	},
 ]);
 

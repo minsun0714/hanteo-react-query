@@ -5,6 +5,7 @@ import ImageUpload from '../../components/ImageUpload';
 import Input from '../../components/Input';
 import { AuthService } from '../../service/AuthService';
 import { getCookie } from '../../util/function/getCookie';
+import LogOutButton from './components/LogOutButton';
 import MyInfoForm from './components/MyInfoForm';
 import { formSchema } from './formSchema';
 import { ErrorMessage } from '@hookform/error-message';
@@ -49,7 +50,7 @@ const MyInfoPage = () => {
 						<Input readOnly {...register('updatedAt')} />
 					</div>
 					<div>
-						<Button text="로그아웃" />
+						<LogOutButton />
 						<Button text="수정" />
 					</div>
 				</MyInfoForm>

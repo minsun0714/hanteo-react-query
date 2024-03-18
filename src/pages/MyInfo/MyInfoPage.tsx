@@ -33,8 +33,8 @@ const MyInfoPage = () => {
 	return (
 		<>
 			<FormProvider {...form}>
-				<ImageUpload />
 				<MyInfoForm>
+					<ImageUpload />
 					<div className="input-wrapper">
 						<Input readOnly {...register('id')} />
 					</div>

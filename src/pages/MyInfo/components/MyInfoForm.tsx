@@ -1,4 +1,5 @@
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
+import LoadingFallback from '../../../components/LoadingFallback';
 import { AuthService } from '../../../service/AuthService';
 import DateFormatter from '../../../util/class/DateFormatter';
 
@@ -10,7 +11,7 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 	const { handleSubmit, watch } = useFormContext();
 
 	const authService = new AuthService();
-	const { mutate } = authService.useUpdateMyInfoMutation();
+	const { mutate, isPending } = authService.useUpdateMyInfoMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const name = formFieldData.name;
@@ -27,7 +28,11 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 
 		mutate(payload);
 	};
-	return <form onSubmit={handleSubmit(onSubmit)}>{children}</form>;
+	return isPending ? (
+		<LoadingFallback isPending />
+	) : (
+		<form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+	);
 };
 
 export default MyInfoForm;

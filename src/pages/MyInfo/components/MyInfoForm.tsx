@@ -11,7 +11,7 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 	const { handleSubmit, watch } = useFormContext();
 
 	const authService = new AuthService();
-	const { mutateAsync, isPending } = authService.useUpdateMyInfoMutation();
+	const { mutateAsync, isPending } = authService.useMyInfoMutation();
 
 	const onSubmit: SubmitHandler<FieldValues> = (formFieldData) => {
 		const name = formFieldData.name;

@@ -26,13 +26,7 @@ export class AuthService {
 		return myInfo;
 	};
 
-	private postSignUp = async (payload: FieldValues) => {
-		return Object.entries(payload).forEach(([key, value]) => {
-			document.cookie = `${key}=${value}; path=/`;
-		});
-	};
-
-	private updateMyInfo = async (payload: FieldValues) => {
+	private postMyInfo = async (payload: FieldValues) => {
 		return Object.entries(payload).forEach(([key, value]) => {
 			document.cookie = `${key}=${value}; path=/`;
 		});
@@ -51,23 +45,16 @@ export class AuthService {
 			alert('알 수 없는 오류가 발생했습니다. 다시 시도해주세요.');
 		},
 	};
-	public useGetMyInfoQuery = () => {
+	public useMyInfoQuery = () => {
 		return useQuery({
 			queryKey: ['myInfo'],
 			queryFn: this.getMyInfo,
 		});
 	};
 
-	public usePostSignUpMutation = () => {
+	public useMyInfoMutation = () => {
 		return useMutation({
-			mutationFn: (payload: FieldValues) => this.postSignUp(payload),
-			...this.mutationOptions,
-		});
-	};
-
-	public useUpdateMyInfoMutation = () => {
-		return useMutation({
-			mutationFn: (payload: FieldValues) => this.updateMyInfo(payload),
+			mutationFn: (payload: FieldValues) => this.postMyInfo(payload),
 			...this.mutationOptions,
 		});
 	};

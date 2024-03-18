@@ -4,7 +4,7 @@ import Button from './Button';
 import DefaultImgUrl from '../assets/default.svg';
 
 type ImageUploadProps = {
-	profileImage: string;
+	profileImage?: string;
 };
 
 const ImageUpload = ({ profileImage }: ImageUploadProps) => {

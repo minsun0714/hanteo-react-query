@@ -29,7 +29,7 @@ const MyInfoForm = ({ children }: MyInfoFormProp) => {
 		mutate(payload);
 	};
 	return isPending ? (
-		<LoadingFallback />
+		<LoadingFallback isPending />
 	) : (
 		<form onSubmit={handleSubmit(onSubmit)}>{children}</form>
 	);

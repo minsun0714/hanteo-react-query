@@ -62,12 +62,15 @@ v20.11.0
 ## data flow
 ![스크린샷 2024-03-18 오후 9 30 41](https://github.com/minsun0714/hanteo-react-query/assets/117507731/a7facdab-0613-4542-a8a5-513e89898a5e)
 
+- 초반에는 임의의 url로 네트워크 요청을 보내 의도적으로 실패하는 요청을 만드는 것으로 과제를 잘못 해석했는데, 채용 담당자분께 이메일 문의 후 방향을 틀었습니다.
+- 임의의 url에 대한 네트워크 요청 없이, Auth Service 내부에 쿠키를 get/set하는 로직을 작성하는 방식으로 최종적인 방향을 잡았습니다.
 
 ## 기능 구현
 ### [React-Query(v5.28.4)] auth 구현 방식
 
 - defaultOption의 경우 아래와 같이 지정했습니다.
   - retry: 3
+    - queries, mutations 둘 다 지정했습니다.
   - refetchOnWindowFocus: false
     - 유저 정보의 경우 자주 변경되는 정보가 아니라고 간주했기 때문에, 다른 창을 보다가 다시 오더라도 refetch를 할 필요가 없다고 생각하여 지정했습니다.
   - staleTime: infinity

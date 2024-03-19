@@ -18,6 +18,10 @@ export const queryClient = new QueryClient({
 			// get 요청이 없는 한 캐시를 계속 사용하도록 설정
 			staleTime: Infinity,
 		},
+		mutations: {
+			// 서버 에러 시 3회 재시도
+			retry: 3,
+		},
 	},
 });
 

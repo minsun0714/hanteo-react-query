@@ -31,17 +31,17 @@ $button-primary-height: 55px;
 
 body {
 	margin: 0;
+	height: 100vh;
+	width: 100vw;
 }
 
 header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	padding: 12px 5px;
 	background-color: $primary-color;
 	color: $primary-text-color;
 	font-weight: 600;
 	font-size: large;
+	text-align: center;
 }
 
 main {
@@ -80,6 +80,11 @@ img {
 
 p {
 	color: $primary-color;
+	&.error-message {
+		color: $warning-text-color;
+		text-align: start;
+		padding: 0 10px;
+	}
 }
 
 button {

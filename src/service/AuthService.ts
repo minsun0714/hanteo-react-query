@@ -13,8 +13,6 @@ interface IMyInfo {
 }
 
 export class AuthService {
-	URL = 'http://localhost:4000';
-
 	private getMyInfo = async (): Promise<IMyInfo> => {
 		const myInfo = {
 			id: getCookie('id') || '',
@@ -33,7 +31,6 @@ export class AuthService {
 	};
 
 	private mutationOptions = {
-		retry: 3,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['myInfo'] });
 		},

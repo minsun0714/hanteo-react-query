@@ -8,7 +8,7 @@ const ErrorFallback = () => {
 	};
 	return (
 		<>
-			<p>error</p>
+			<p className="error-message">something went wrong</p>
 			<button onClick={handleRetry}>Retry</button>
 		</>
 	);

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Button from './Button';
-import DefaultImgUrl from '../assets/default.svg';
+import DefaultImgUrl from '../assets/Default.svg';
 
 type ImageUploadProps = {
 	profileImage?: string;

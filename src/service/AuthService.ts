@@ -31,7 +31,6 @@ export class AuthService {
 	};
 
 	private mutationOptions = {
-		retry: 3,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['myInfo'] });
 		},

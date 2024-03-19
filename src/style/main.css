@@ -1,5 +1,9 @@
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 header {
@@ -49,6 +53,10 @@ img {
 }
 p {
   color: black;
+}
+p.error-message {
+  color: red;
+  text-align: center;
 }
 
 button {

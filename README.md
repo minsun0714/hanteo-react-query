@@ -60,7 +60,8 @@ v20.11.0
 - vite-env.d.ts
 
 ## data flow
-![스크린샷 2024-03-18 오후 9 30 41](https://github.com/minsun0714/hanteo-react-query/assets/117507731/a7facdab-0613-4542-a8a5-513e89898a5e)
+![스크린샷 2024-03-19 오전 10 45 50](https://github.com/minsun0714/hanteo-react-query/assets/117507731/37eb908e-6bfb-48a8-a1b9-9d7bc0921569)
+
 
 - 초반에는 임의의 url로 네트워크 요청을 보내 의도적으로 실패하는 요청을 만드는 것으로 과제를 잘못 해석했는데, 채용 담당자분께 이메일 문의 후 방향을 틀었습니다.
 - 임의의 url에 대한 네트워크 요청 없이, Auth Service 내부에 쿠키를 get/set하는 로직을 작성하는 방식으로 최종적인 방향을 잡았습니다.

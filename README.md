@@ -6,7 +6,7 @@ v20.11.0
 | 종류   | 기술스택     |
 |------------|-----------------|
 | 코어       | React, Typescript|
-| 클라이언트     | axios, React-Query|
+| 클라이언트     | React-Query|
 | 스타일링    | scss            |
 | 폼 상태관리 | react-hook-form, zod |
 
